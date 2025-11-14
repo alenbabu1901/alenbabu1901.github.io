@@ -141,11 +141,11 @@ body {
 
 /* Single-section view: hide all sections by default and reveal the active one */
 .section {
-    display: none;
+    display: none !important;
 }
 
 .section.active-section {
-    display: block;
+    display: block !important;
 }
 
 @keyframes fadeIn {
