@@ -326,6 +326,14 @@ body {
     color: var(--text);
 }
 
+/* Image replacements for former emoji icons */
+.skill-icon img {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: block;
+    margin: 0 auto 10px auto;
+}
+
 /* Timeline Container (Work, Internships, Education) */
 .timeline-container {
     display: flex;
@@ -491,6 +499,12 @@ body {
 .award-icon {
     font-size: 3rem;
     flex-shrink: 0;
+}
+
+.award-icon img {
+    width: 3rem;
+    height: 3rem;
+    display: block;
 }
 
 .award-details h3 {
@@ -774,6 +788,10 @@ footer {
     .award-icon {
         font-size: 2.5rem;
         margin-bottom: 10px;
+    }
+    .award-icon img {
+        width: 2.5rem;
+        height: 2.5rem;
     }
 }
 

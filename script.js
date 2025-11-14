@@ -63,6 +63,52 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.nav-link');
     const footer = document.getElementById('site-footer');
 
+    // Dynamically load selected sections from partials when served over HTTP(S)
+    async function loadPartialForSection(id) {
+        try {
+            // Skip on file:// to avoid CORS issues
+            if (location.protocol === 'file:') return;
+            const res = await fetch(`partials/${id}.html`, { cache: 'no-cache' });
+            if (!res.ok) return;
+            const html = await res.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const loaded = doc.querySelector(`section#${id}`);
+            const host = document.getElementById(id);
+            if (loaded && host) {
+                // Replace only the inner content to preserve id/classes and SPA behavior
+                host.innerHTML = loaded.innerHTML;
+            }
+        } catch (e) {
+            // Silently ignore fetch issues (e.g., offline or CORS)
+        }
+    }
+
+    function loadPartials(ids = []) {
+        return Promise.all(ids.map(loadPartialForSection));
+    }
+
+    // Provide a friendly fallback message when running from file:// (no partials)
+    function ensureLocalFallback(id) {
+        if (location.protocol !== 'file:') return;
+        const host = document.getElementById(id);
+        if (!host) return;
+        // Check if section has actual content (not just comments or whitespace)
+        const content = host.innerHTML.trim();
+        const hasContent = content && !content.startsWith('<!--') && content.length > 50;
+        if (!hasContent && content.indexOf('data-local-fallback') === -1) {
+            host.innerHTML = `
+                <h2 class="section-title">${id.charAt(0).toUpperCase() + id.slice(1)}</h2>
+                <div class="timeline-container" data-local-fallback>
+                    <div class="timeline-item">
+                        <h3>Content not loaded locally</h3>
+                        <p class="timeline-date">Tip</p>
+                        <p>This section loads from <code>partials/${id}.html</code>. To preview locally, run a local server (e.g., <code>python -m http.server 5500</code>) and open <code>http://localhost:5500/</code>.</p>
+                    </div>
+                </div>`;
+        }
+    }
+
     function showSection(id) {
         // Hide all sections
         sections.forEach(sec => sec.classList.remove('active-section'));
@@ -95,16 +141,23 @@ document.addEventListener('DOMContentLoaded', function() {
             const href = this.getAttribute('href');
             // Extract section id from either /#section or /section format
             const targetId = href.startsWith('#') ? href.substring(1) : href.replace(/^\//, '');
-            showSection(targetId);
-            // Use pushState for clean URLs
-            history.pushState(null, '', `/${targetId}`);
+            // Try loading partial for any section; if it doesn't exist, no-op
+            loadPartialForSection(targetId).finally(() => {
+                ensureLocalFallback(targetId);
+                showSection(targetId);
+                // Use pushState for clean URLs
+                history.pushState(null, '', `/${targetId}`);
+            });
         });
     });
 
     // Respond to back/forward navigation
     window.addEventListener('popstate', () => {
         const id = getCurrentSection();
-        showSection(id);
+        loadPartialForSection(id).finally(() => {
+            ensureLocalFallback(id);
+            showSection(id);
+        });
     });
 
     // Contact Form Handler
@@ -117,7 +170,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Initialize view based on current path/hash (default to home)
+    // Initialize: try to load partials for all sections, then show current section
     const initialId = getCurrentSection();
-    showSection(initialId);
+    const sectionIds = Array.from(sections).map(s => s.id).filter(Boolean);
+    loadPartials(sectionIds).finally(() => {
+        ['projects','work'].forEach(ensureLocalFallback);
+        ensureLocalFallback(initialId);
+        showSection(initialId);
+    });
 });
