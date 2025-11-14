@@ -10,118 +10,268 @@
 </head>
 
 <body>
-    <!-- NAVBAR -->
-    <header>
-        <h1 class="logo">MyPortfolio</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Left Side - Content -->
+        <main class="content-side">
+            <!-- HOME -->
+            <section id="home" class="section">
+                <div class="home-content">
+                    <h1 class="main-title">Hello, I'm <span class="highlight">Alen</span></h1>
+                    <p class="subtitle">Developer | Student | Tech Enthusiast</p>
+                    <p class="intro-text">
+                        Passionate about creating innovative solutions and exploring new technologies. 
+                        Welcome to my digital space where I showcase my journey, projects, and achievements.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ABOUT -->
+            <section id="about" class="section">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <img src="assets/PHOTO.jpg" alt="Profile photo" class="profile-img">
+                    <div class="about-text">
+                        <p>
+                            I'm a passionate developer who loves building interactive applications, 
+                            automation tools, and AI projects. I'm always learning and experimenting 
+                            with new technologies.
+                        </p>
+                        <p>
+                            This portfolio highlights my journey, skills, and achievements in the world 
+                            of technology and software development.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SKILLS -->
+            <section id="skills" class="section">
+                <h2 class="section-title">Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <span class="skill-icon">🌐</span>
+                        <span class="skill-name">HTML</span>
+                    </div>
+                    <div class="skill-card">
+                        <span class="skill-icon">🎨</span>
+                        <span class="skill-name">CSS</span>
+                    </div>
+                    <div class="skill-card">
+                        <span class="skill-icon">⚡</span>
+                        <span class="skill-name">JavaScript</span>
+                    </div>
+                    <div class="skill-card">
+                        <span class="skill-icon">🐍</span>
+                        <span class="skill-name">Python</span>
+                    </div>
+                    <div class="skill-card">
+                        <span class="skill-icon">🚀</span>
+                        <span class="skill-name">Django</span>
+                    </div>
+                    <div class="skill-card">
+                        <span class="skill-icon">🗄️</span>
+                        <span class="skill-name">MySQL</span>
+                    </div>
+                    <div class="skill-card">
+                        <span class="skill-icon">📦</span>
+                        <span class="skill-name">Git / GitHub</span>
+                    </div>
+                    <div class="skill-card">
+                        <span class="skill-icon">🤖</span>
+                        <span class="skill-name">AI / ML</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- WORK -->
+            <section id="work" class="section">
+                <h2 class="section-title">Work Experience</h2>
+                <div class="timeline-container">
+                    <div class="timeline-item">
+                        <h3>Job Title</h3>
+                        <p class="timeline-date">Company Name | 2024 - Present</p>
+                        <p>Description of your work experience, responsibilities, and achievements.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Previous Position</h3>
+                        <p class="timeline-date">Company Name | 2023 - 2024</p>
+                        <p>Description of your previous work experience and key contributions.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- INTERNSHIPS -->
+            <section id="internships" class="section">
+                <h2 class="section-title">Internships</h2>
+                <div class="timeline-container">
+                    <div class="timeline-item">
+                        <h3>Internship Title</h3>
+                        <p class="timeline-date">Company Name | Summer 2023</p>
+                        <p>Description of your internship experience, projects worked on, and skills gained.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Another Internship</h3>
+                        <p class="timeline-date">Company Name | Winter 2022</p>
+                        <p>Description of responsibilities and learning outcomes from this internship.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EDUCATION -->
+            <section id="education" class="section">
+                <h2 class="section-title">Education</h2>
+                <div class="timeline-container">
+                    <div class="timeline-item">
+                        <h3>Bachelor's Degree (2023–Present)</h3>
+                        <p class="timeline-date">College Name, Course, City</p>
+                        <p>Currently pursuing a degree in Computer Science/Engineering with focus on software development and AI.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Diploma / 12th (2022)</h3>
+                        <p class="timeline-date">College Name, City</p>
+                        <p>Completed higher secondary education with excellence in science and mathematics.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>High School (2020)</h3>
+                        <p class="timeline-date">School Name, City</p>
+                        <p>Completed secondary education with strong foundation in academics.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROJECTS -->
+            <section id="projects" class="section">
+                <h2 class="section-title">Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <img src="assets/project1.jpg" alt="Personal AI Assistant project">
+                        <div class="project-content">
+                            <h3>Personal AI Assistant</h3>
+                            <p>A smart PC assistant with voice commands, GUI, NLP, and automation capabilities.</p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">AI</span>
+                                <span class="tag">NLP</span>
+                            </div>
+                            <a href="#" class="btn-small">View Details</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="assets/project.jpg" alt="Student Management System project">
+                        <div class="project-content">
+                            <h3>Student Management System</h3>
+                            <p>Full-stack web application for students with admin panel and MySQL backend.</p>
+                            <div class="project-tags">
+                                <span class="tag">Django</span>
+                                <span class="tag">MySQL</span>
+                                <span class="tag">Web</span>
+                            </div>
+                            <a href="#" class="btn-small">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COURSES -->
+            <section id="courses" class="section">
+                <h2 class="section-title">Courses & Certifications</h2>
+                <div class="courses-grid">
+                    <div class="course-card">
+                        <h3>Full Stack Web Development</h3>
+                        <p class="course-provider">Platform Name | 2024</p>
+                        <p>Comprehensive course covering front-end and back-end development.</p>
+                    </div>
+                    <div class="course-card">
+                        <h3>Machine Learning Fundamentals</h3>
+                        <p class="course-provider">Platform Name | 2023</p>
+                        <p>Introduction to ML algorithms, neural networks, and practical applications.</p>
+                    </div>
+                    <div class="course-card">
+                        <h3>Python for Data Science</h3>
+                        <p class="course-provider">Platform Name | 2023</p>
+                        <p>Data analysis, visualization, and scientific computing with Python.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AWARDS -->
+            <section id="awards" class="section">
+                <h2 class="section-title">Awards & Achievements</h2>
+                <div class="awards-list">
+                    <div class="award-item">
+                        <div class="award-icon">🏆</div>
+                        <div class="award-details">
+                            <h3>Hackathon Winner</h3>
+                            <p class="award-date">Event Name | 2024</p>
+                            <p>Won first place for innovative AI-powered solution.</p>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <div class="award-icon">🥇</div>
+                        <div class="award-details">
+                            <h3>Academic Excellence Award</h3>
+                            <p class="award-date">College Name | 2023</p>
+                            <p>Recognized for outstanding academic performance.</p>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <div class="award-icon">⭐</div>
+                        <div class="award-details">
+                            <h3>Best Project Award</h3>
+                            <p class="award-date">College Tech Fest | 2023</p>
+                            <p>Best project award for innovative student management system.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACT -->
+            <section id="contact" class="section">
+                <h2 class="section-title">Contact Me</h2>
+                <div class="contact-content">
+                    <p class="contact-intro">Have a question or want to work together? Feel free to reach out!</p>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button class="btn" type="submit">Send Message</button>
+                    </form>
+                </div>
+            </section>
+
+            <footer>
+                <p>© 2025 Your Name. All rights reserved.</p>
+            </footer>
+        </main>
+
+        <!-- Right Side - Navigation -->
+        <nav class="nav-side">
+            <div class="nav-content">
+                <div class="nav-header">
+                    <h2 class="nav-logo">Portfolio</h2>
+                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌓</button>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#work" class="nav-link">Work</a></li>
+                    <li><a href="#internships" class="nav-link">Internships</a></li>
+                    <li><a href="#education" class="nav-link">Education</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#courses" class="nav-link">Courses</a></li>
+                    <li><a href="#awards" class="nav-link">Awards</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
         </nav>
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌓</button>
-    </header>
-
-    <!-- HOME -->
-    <section id="home" class="section home-section">
-        <div class="home-text">
-            <h1>Hello, I'm <span class="highlight">Your Name</span></h1>
-            <p>Developer | Student | Tech Enthusiast</p>
-            <a href="#contact" class="btn">Contact Me</a>
-        </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="section">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-container">
-            <img src="assets/PHOTO.jpg" alt="Profile photo" class="profile-img">
-            <div>
-                <p>
-                    I'm a passionate developer who loves building interactive applications, 
-                    automation tools, and AI projects. I'm always learning and experimenting 
-                    with new technologies.
-                </p>
-                <p>
-                    This portfolio highlights my journey, skills, and achievements.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills" class="section">
-        <h2 class="section-title">Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-card">HTML</div>
-            <div class="skill-card">CSS</div>
-            <div class="skill-card">JavaScript</div>
-            <div class="skill-card">Python</div>
-            <div class="skill-card">Django</div>
-            <div class="skill-card">MySQL</div>
-            <div class="skill-card">Git / GitHub</div>
-            <div class="skill-card">AI / ML Basics</div>
-        </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects" class="section">
-        <h2 class="section-title">Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <img src="assets/project1.jpg" alt="Personal AI Assistant project">
-                <h3>Personal AI Assistant</h3>
-                <p>A smart PC assistant with voice commands, GUI, NLP, and automation.</p>
-                <a href="#" class="btn-small">View</a>
-            </div>
-
-            <div class="project-card">
-                <img src="assets/project.jpg" alt="Student Management System project">
-                <h3>Student Management System</h3>
-                <p>Full-stack web app for students, admin panel, MySQL backend.</p>
-                <a href="#" class="btn-small">View</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section id="education" class="section">
-        <h2 class="section-title">Education</h2>
-        <div class="timeline">
-            <div class="edu-card">
-                <h3>High School (2020)</h3>
-                <p>School Name, City</p>
-            </div>
-
-            <div class="edu-card">
-                <h3>Diploma / 12th (2022)</h3>
-                <p>College Name, City</p>
-            </div>
-
-            <div class="edu-card">
-                <h3>Bachelor's Degree (2023–Present)</h3>
-                <p>College Name, Course, City</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section contact-section">
-        <h2 class="section-title">Contact Me</h2>
-        <form id="contactForm">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Email Address" required>
-            <textarea placeholder="Your Message" required></textarea>
-            <button class="btn" type="submit">Send Message</button>
-        </form>
-    </section>
-
-    <footer>
-        <p>© 2025 Your Name. All rights reserved.</p>
-    </footer>
+    </div>
 </body>
 </html>
