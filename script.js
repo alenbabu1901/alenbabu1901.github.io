@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Single-section mode: show only the selected section
     const sections = document.querySelectorAll('.section');
     const navLinks = document.querySelectorAll('.nav-link');
+    const footer = document.getElementById('site-footer');
 
     function showSection(id) {
         // Hide all sections
@@ -80,6 +81,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 link.classList.add('active');
             }
         });
+
+        // Toggle footer visibility: only show for contact section
+        if (footer) {
+            footer.style.display = (id === 'contact') ? 'block' : 'none';
+        }
     }
     
     // Handle nav clicks to switch sections
@@ -111,9 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Simulate clicking home button to initialize the view
-    const homeLink = document.querySelector('a[href="/home"], a[href="#home"]');
-    if (homeLink) {
-        homeLink.click();
-    }
+    // Initialize view based on current path/hash (default to home)
+    const initialId = getCurrentSection();
+    showSection(initialId);
 });
