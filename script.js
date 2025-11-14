@@ -32,10 +32,31 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     })();
     
+    // Apply theme: saved preference > system preference
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark');
+    if (savedTheme) {
+        // Use saved preference
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark');
+        }
+    } else {
+        // Use system preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (prefersDark) {
+            document.body.classList.add('dark');
+        }
     }
+    
+    // Listen for system theme changes if no saved preference
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+            if (e.matches) {
+                document.body.classList.add('dark');
+            } else {
+                document.body.classList.remove('dark');
+            }
+        }
+    });
     
     // Single-section mode: show only the selected section
     const sections = document.querySelectorAll('.section');
