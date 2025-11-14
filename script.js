@@ -12,44 +12,49 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Active Navigation Link on Scroll
+// Single-section mode: show only the selected section (no fetch, all inline)
 const sections = document.querySelectorAll('.section');
 const navLinks = document.querySelectorAll('.nav-link');
 
-function setActiveLink() {
-    let currentSection = '';
+function showSection(id) {
+    // Hide all sections
+    sections.forEach(sec => sec.classList.remove('active-section'));
     
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        
-        if (window.pageYOffset >= sectionTop - 200) {
-            currentSection = section.getAttribute('id');
-        }
-    });
-    
+    // Show the target section
+    const target = document.getElementById(id);
+    if (target) {
+        target.classList.add('active-section');
+    }
+
+    // Update active nav link
     navLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSection}`) {
+        if (link.getAttribute('href') === `#${id}`) {
             link.classList.add('active');
         }
     });
 }
 
-window.addEventListener('scroll', setActiveLink);
-window.addEventListener('load', setActiveLink);
+// Initialize visible section (from hash or default to 'home')
+document.addEventListener('DOMContentLoaded', function () {
+    const initialId = (location.hash && location.hash.substring(1)) || 'home';
+    showSection(initialId);
+});
 
-// Smooth scroll for navigation links
+// Handle nav clicks to switch sections
 navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
+    link.addEventListener('click', function (e) {
         e.preventDefault();
         const targetId = this.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
-        
-        if (targetSection) {
-            targetSection.scrollIntoView({ behavior: 'smooth' });
-        }
+        showSection(targetId);
+        history.replaceState(null, '', `#${targetId}`);
     });
+});
+
+// Respond to back/forward navigation on the hash
+window.addEventListener('hashchange', () => {
+    const id = (location.hash && location.hash.substring(1)) || 'home';
+    showSection(id);
 });
 
 // Contact Form Handler
@@ -62,25 +67,3 @@ if (contactForm) {
     });
 }
 
-// Animate elements on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe all sections for animation
-document.querySelectorAll('.section').forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(20px)';
-    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(section);
-});

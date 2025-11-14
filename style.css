@@ -139,6 +139,15 @@ body {
     animation: fadeIn 0.6s ease;
 }
 
+/* Single-section view: hide all sections by default and reveal the active one */
+.section {
+    display: none;
+}
+
+.section.active-section {
+    display: block;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
