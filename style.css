@@ -49,19 +49,20 @@ body {
     flex: 1;
     padding: 60px 80px;
     max-width: calc(100% - 320px);
+    margin-left: 320px;
     overflow-y: auto;
 }
 
 /* Right Side - Navigation Sidebar */
 .nav-side {
     position: fixed;
-    right: 0;
+    left: 0;
     top: 0;
     width: 320px;
     height: 100vh;
     background: var(--nav-bg);
-    border-left: 1px solid var(--border);
-    box-shadow: -2px 0 10px var(--shadow);
+    border-right: 1px solid var(--border);
+    box-shadow: 2px 0 10px var(--shadow);
     overflow-y: auto;
     z-index: 1000;
 }
@@ -108,7 +109,7 @@ body {
 .nav-link:hover {
     background: var(--card-hover);
     color: var(--primary);
-    transform: translateX(-5px);
+    transform: translateX(5px);
 }
 
 .nav-link.active {
@@ -580,6 +581,7 @@ footer {
     
     .content-side {
         max-width: calc(100% - 280px);
+        margin-left: 280px;
     }
 }
 
@@ -592,12 +594,13 @@ footer {
         position: relative;
         width: 100%;
         height: auto;
-        border-left: none;
+        border-right: none;
         border-bottom: 1px solid var(--border);
     }
     
     .content-side {
         max-width: 100%;
+        margin-left: 0;
         padding: 30px 20px;
     }
     
