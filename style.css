@@ -287,6 +287,10 @@ body {
     opacity: 0.9;
 }
 
+.about-actions {
+    margin-top: 15px;
+}
+
 /* Skills Grid */
 .skills-grid {
     display: grid;
