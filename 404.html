@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
-        // Redirect to index.html with the path preserved
-        const path = window.location.pathname;
-        window.location.replace('/index.html' + path);
+        // Single Page Application redirect for GitHub Pages
+        sessionStorage.redirect = location.href;
     </script>
+    <meta http-equiv="refresh" content="0;URL='/'">
 </head>
 <body>
-    Redirecting...
 </body>
 </html>

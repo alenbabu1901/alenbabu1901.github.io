@@ -20,6 +20,18 @@ function getCurrentSection() {
 
 // Load saved theme and initialize on DOM ready
 document.addEventListener('DOMContentLoaded', function() {
+    // Handle GitHub Pages SPA redirect
+    (function() {
+        const redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+            const url = new URL(redirect);
+            if (url.pathname && url.pathname !== '/' && url.pathname !== '/index.html') {
+                history.replaceState(null, null, url.pathname);
+            }
+        }
+    })();
+    
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         document.body.classList.add('dark');
