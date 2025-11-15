@@ -9,6 +9,11 @@ function getCurrentSection() {
     const path = window.location.pathname;
     const hash = window.location.hash;
     
+    // Handle hash-based project details
+    if (hash && hash.startsWith('#project-detail/')) {
+        return hash.substring(1); // Returns "project-detail/ai-assistant"
+    }
+    
     if (path && path !== '/' && path !== '/index.html') {
         // Remove leading slash and .html if present
         return path.replace(/^\//, '').replace(/\.html$/, '');
@@ -68,7 +73,17 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             // Skip on file:// to avoid CORS issues
             if (location.protocol === 'file:') return;
-            const res = await fetch(`partials/${id}.html`, { cache: 'no-cache' });
+            
+            // Handle project detail pages
+            let filePath = `partials/${id}.html`;
+            if (id.startsWith('project-detail/')) {
+                const projectSlug = id.replace('project-detail/', '');
+                // Load from nested projects directory
+                filePath = `partials/projects/project-${projectSlug}.html`;
+                id = 'project-detail';
+            }
+            
+            const res = await fetch(filePath, { cache: 'no-cache' });
             if (!res.ok) return;
             const html = await res.text();
             const parser = new DOMParser();
@@ -113,8 +128,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Hide all sections
         sections.forEach(sec => sec.classList.remove('active-section'));
         
+        // Handle project detail pages
+        let targetId = id;
+        if (id.startsWith('project-detail/')) {
+            targetId = 'project-detail';
+        }
+        
         // Show the target section
-        const target = document.getElementById(id);
+        const target = document.getElementById(targetId);
         if (target) {
             target.classList.add('active-section');
         }
@@ -123,7 +144,9 @@ document.addEventListener('DOMContentLoaded', function() {
         navLinks.forEach(link => {
             link.classList.remove('active');
             const linkPath = link.getAttribute('href');
-            if (linkPath === `/${id}` || linkPath === `#${id}`) {
+            // For project details, highlight projects nav
+            const compareId = id.startsWith('project-detail/') ? 'projects' : id;
+            if (linkPath === `/${compareId}` || linkPath === `#${compareId}`) {
                 link.classList.add('active');
             }
         });
@@ -145,10 +168,27 @@ document.addEventListener('DOMContentLoaded', function() {
             loadPartialForSection(targetId).finally(() => {
                 ensureLocalFallback(targetId);
                 showSection(targetId);
-                // Use pushState for clean URLs
-                history.pushState(null, '', `/${targetId}`);
+                // Use hash for project details, pushState for regular sections
+                if (targetId.startsWith('project-detail/')) {
+                    history.pushState(null, '', `#${targetId}`);
+                } else {
+                    history.pushState(null, '', `/${targetId}`);
+                }
             });
         });
+    });
+
+    // Delegate click handling for dynamically loaded project detail links
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('project-detail-link')) {
+            e.preventDefault();
+            const targetId = e.target.getAttribute('href').substring(1); // Remove #
+            loadPartialForSection(targetId).finally(() => {
+                ensureLocalFallback(targetId);
+                showSection(targetId);
+                history.pushState(null, '', `#${targetId}`);
+            });
+        }
     });
 
     // Respond to back/forward navigation
