@@ -93,6 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (loaded && host) {
                 // Replace only the inner content to preserve id/classes and SPA behavior
                 host.innerHTML = loaded.innerHTML;
+                // If we loaded the contact partial, the form event listener will be attached via the next section when the DOM is ready.
             }
         } catch (e) {
             // Silently ignore fetch issues (e.g., offline or CORS)
@@ -203,11 +204,63 @@ document.addEventListener('DOMContentLoaded', function() {
     // Contact Form Handler
     const contactForm = document.getElementById("contactForm");
     if (contactForm) {
-        contactForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            alert("Message sent successfully! Thank you for reaching out.");
-            this.reset();
-        });
+        const statusEl = document.getElementById('contactStatus');
+        const action = (contactForm.getAttribute('action') || '').trim();
+        const isGAS = action.indexOf('script.google.com/macros/') !== -1;
+
+        // If posting to Google Apps Script via hidden iframe, don't intercept submit
+        if (isGAS) {
+            const iframe = document.getElementById('hidden_iframe');
+            if (iframe) {
+                iframe.addEventListener('load', function () {
+                    if (statusEl) {
+                        statusEl.classList.remove('error');
+                        statusEl.textContent = 'Sent';
+                    }
+                    // Reset after the iframe load completes (submission finished)
+                    contactForm.reset();
+                    const btn = contactForm.querySelector('button[type="submit"]');
+                    if (btn) btn.disabled = false;
+                });
+            }
+            contactForm.addEventListener('submit', function () {
+                const name = document.getElementById('contactName')?.value.trim() || '';
+                const email = document.getElementById('contactEmail')?.value.trim() || '';
+                const message = document.getElementById('contactMessage')?.value.trim() || '';
+                if (!name || !email || !message) {
+                    if (statusEl) { statusEl.textContent = 'Please fill in all fields.'; statusEl.classList.add('error'); }
+                    // Let native validation handle focusing the first invalid field
+                    return;
+                }
+                if (statusEl) { statusEl.textContent = 'Sending…'; statusEl.classList.remove('error'); }
+                const btn = contactForm.querySelector('button[type="submit"]');
+                if (btn) btn.disabled = true;
+                // No preventDefault: native POST submits to hidden iframe
+            });
+        } else {
+            // Default behavior (no GAS): prevent default and attempt fetch to /contact
+            contactForm.addEventListener("submit", function (e) {
+                e.preventDefault();
+                const name = document.getElementById('contactName')?.value.trim() || '';
+                const email = document.getElementById('contactEmail')?.value.trim() || '';
+                const message = document.getElementById('contactMessage')?.value.trim() || '';
+                if (!name || !email || !message) {
+                    if (statusEl) { statusEl.textContent = 'Please fill in all fields.'; statusEl.classList.add('error'); }
+                    return;
+                }
+                fetch('/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, message })
+                }).then(r => {
+                    if (statusEl) { statusEl.classList.remove('error'); statusEl.textContent = r.ok ? 'Sent' : 'Error'; }
+                }).catch(() => {
+                    if (statusEl) { statusEl.textContent = 'Error'; statusEl.classList.add('error'); }
+                }).finally(() => {
+                    contactForm.reset();
+                });
+            });
+        }
     }
     
     // Initialize: try to load partials for all sections, then show current section
@@ -217,5 +270,6 @@ document.addEventListener('DOMContentLoaded', function() {
         ['projects','work'].forEach(ensureLocalFallback);
         ensureLocalFallback(initialId);
         showSection(initialId);
+        // Contact form handler is bound once on DOMContentLoaded when present; no stored submissions logic.
     });
 });

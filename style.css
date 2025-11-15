@@ -574,6 +574,19 @@ body {
     min-height: 120px;
 }
 
+.contact-status {
+    font-size: 0.95rem;
+    margin-top: -5px;
+    color: var(--primary);
+    min-height: 20px;
+    font-weight: 600;
+}
+
+.contact-status.error {
+    color: #d9534f;
+    font-weight: 600;
+}
+
 /* Buttons */
 .btn {
     background: var(--primary);
@@ -784,6 +797,42 @@ footer {
 }
 
 .instagram-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(188, 24, 136, 0.4);
+}
+
+.instagram-btn2 {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.instagram-btn2:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(188, 24, 136, 0.4);
+}
+
+.instagram-btn3 {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.instagram-btn3:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(188, 24, 136, 0.4);
+}
+
+.instagram-btn4 {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.instagram-btn4:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(188, 24, 136, 0.4);
+}
+
+.instagram-btn1 {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.instagram-btn1:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(188, 24, 136, 0.4);
 }

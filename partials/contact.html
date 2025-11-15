@@ -2,7 +2,7 @@
   <h2 class="section-title">Contact Me</h2>
   <div class="social-links">
       <h3>Connect with me</h3>
-      <a href="https://instagram.com/demo" target="_blank" rel="noopener noreferrer" class="social-btn instagram-btn">
+      <a href="https://www.instagram.com/alenbbu" target="_blank" rel="noopener noreferrer" class="social-btn instagram-btn">
         <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/instagram.svg" alt="Instagram" class="social-icon">
         Instagram
       </a>
@@ -10,23 +10,43 @@
         <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/x.svg" alt="Twitter/X" class="social-icon">
         Twitter
       </a>
+      <a href="https://instagram.com/demo" target="_blank" rel="noopener noreferrer" class="social-btn instagram-btn1">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/instagram.svg" alt="Instagram" class="social-icon">
+        Instagram
+      </a>
+      <a href="https://instagram.com/demo" target="_blank" rel="noopener noreferrer" class="social-btn instagram-btn2">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/instagram.svg" alt="Instagram" class="social-icon">
+        Instagram
+      </a>
+      <a href="https://instagram.com/demo" target="_blank" rel="noopener noreferrer" class="social-btn instagram-btn3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/instagram.svg" alt="Instagram" class="social-icon">
+        Instagram
+      </a>
+      <a href="https://instagram.com/demo" target="_blank" rel="noopener noreferrer" class="social-btn instagram-btn4">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/instagram.svg" alt="Instagram" class="social-icon">
+        Instagram
+      </a>
     </div>
   
   
   <div class="contact-content">
     <p class="contact-intro">Have a question or want to work together? Feel free to reach out!</p>
-    <form id="contactForm" class="contact-form">
+    <!-- Replace YOUR_GAS_WEB_APP_URL with your deployed Apps Script Web App URL -->
+    <form id="contactForm" class="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbw1GwnMZQ2RvIELN7-6ItDB7WPYNxrO-4i1YKNxQLwGKxsEAWbU6I3U9cVtGxphy64f/exec" target="hidden_iframe">
       <div class="form-group">
-        <input type="text" placeholder="Your Name" required>
+        <input id="contactName" name="name" type="text" placeholder="Your Name" required>
       </div>
       <div class="form-group">
-        <input type="email" placeholder="Email Address" required>
+        <input id="contactEmail" name="email" type="email" placeholder="Email Address" required>
       </div>
       <div class="form-group">
-        <textarea placeholder="Your Message" rows="5" required></textarea>
+        <textarea id="contactMessage" name="message" placeholder="Your Message" rows="5" required></textarea>
       </div>
       <button class="btn" type="submit">Send Message</button>
+      <p id="contactStatus" class="contact-status" aria-live="polite"></p>
+      <!-- Submits to Google Apps Script via hidden iframe to avoid page navigation -->
     </form>
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
     
     
   </div>
