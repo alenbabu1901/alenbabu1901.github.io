@@ -52,7 +52,7 @@ body {
 /* Left Side - Content Area */
 .content-side {
     flex: 1;
-    padding: 60px 80px;
+    padding: 40px 80px;
     max-width: calc(100% - 320px);
     margin-left: 320px;
     overflow-y: auto;
