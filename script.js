@@ -193,6 +193,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 history.pushState(null, '', `#${targetId}`);
             });
         }
+        
+        // Handle contact-me-btn clicks
+        if (e.target.classList.contains('contact-me-btn')) {
+            e.preventDefault();
+            const href = e.target.getAttribute('href');
+            const targetId = href.startsWith('#') ? href.substring(1) : href.replace(/^\//, '');
+            loadPartialForSection(targetId).finally(() => {
+                ensureLocalFallback(targetId);
+                showSection(targetId);
+                history.pushState(null, '', `/${targetId}`);
+            });
+        }
     });
 
     // Respond to back/forward navigation

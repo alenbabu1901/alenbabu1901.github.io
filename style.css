@@ -255,6 +255,29 @@ body {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
+.contact-me-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: var(--primary);
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+    z-index: 10;
+    display: inline-block;
+}
+
+.contact-me-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(74, 144, 226, 0.4);
+}
+
 /* About Section */
 .about-content {
     display: flex;
@@ -926,6 +949,13 @@ footer {
     
     .intro-text {
         font-size: 1rem;
+    }
+    
+    .contact-me-btn {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 24px;
+        font-size: 0.95rem;
     }
     
     .section-title {
