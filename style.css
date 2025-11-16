@@ -902,6 +902,8 @@ footer {
         margin-left: 0;
         padding: 25px 20px;
         order: 1;
+        height: auto;
+        overflow-y: visible;
     }
     
     .nav-content {
