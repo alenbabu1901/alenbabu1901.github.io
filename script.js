@@ -93,7 +93,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (loaded && host) {
                 // Replace only the inner content to preserve id/classes and SPA behavior
                 host.innerHTML = loaded.innerHTML;
-                // If we loaded the contact partial, the form event listener will be attached via the next section when the DOM is ready.
+                // If we loaded the contact partial, rebind the form handler
+                if (id === 'contact') {
+                    bindContactForm();
+                }
             }
         } catch (e) {
             // Silently ignore fetch issues (e.g., offline or CORS)
@@ -202,59 +205,87 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Contact Form Handler (Google Apps Script via fetch)
-    const contactForm = document.getElementById("contactForm");
-    if (contactForm) {
+    function bindContactForm() {
+        // Remove any existing listeners first
+        document.removeEventListener('submit', handleContactFormSubmit, true);
+        document.removeEventListener('click', handleContactFormClick, true);
+        // Use capturing phase to ensure we catch before native submit/navigation
+        document.addEventListener('submit', handleContactFormSubmit, true);
+        document.addEventListener('click', handleContactFormClick, true);
+    }
+
+    function handleContactFormClick(e) {
+        // Intercept clicks on submit buttons within the contact form
+        const submitEl = e.target && (e.target.closest('#contactForm button[type="submit"]') || e.target.closest('#contactForm input[type="submit"]'));
+        if (!submitEl) return;
+        const form = submitEl.closest('#contactForm');
+        if (!form) return;
+        e.preventDefault();
+        e.stopPropagation();
+        submitContactForm(form);
+    }
+
+    function handleContactFormSubmit(e) {
+        const contactForm = e.target.closest('#contactForm');
+        if (!contactForm) return;
+        e.preventDefault();
+        e.stopPropagation();
+        submitContactForm(contactForm);
+    }
+
+    function submitContactForm(contactForm) {
         const statusEl = document.getElementById('contactStatus');
-        const action = (contactForm.getAttribute('action') || '').trim();
+        const action = (contactForm.getAttribute('data-action') || contactForm.getAttribute('action') || '').trim();
         const isGAS = action.indexOf('script.google.com/macros/') !== -1;
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('contactName')?.value.trim() || '';
-            const email = document.getElementById('contactEmail')?.value.trim() || '';
-            const message = document.getElementById('contactMessage')?.value.trim() || '';
-            if (!name || !email || !message) {
-                if (statusEl) { statusEl.textContent = 'Please fill in all fields.'; statusEl.classList.add('error'); }
-                return;
-            }
-            if (!action) {
-                if (statusEl) { statusEl.textContent = 'Form action missing.'; statusEl.classList.add('error'); }
-                return;
-            }
-            if (statusEl) { statusEl.textContent = 'Sending…'; statusEl.classList.remove('error'); }
-            const btn = contactForm.querySelector('button[type="submit"]');
-            if (btn) btn.disabled = true;
 
-            // Prepare payload: for GAS accept form-urlencoded (e.parameter) or JSON fallback
-            let fetchOptions;
-            if (isGAS) {
-                const params = new URLSearchParams();
-                params.append('name', name);
-                params.append('email', email);
-                params.append('message', message);
-                fetchOptions = { method: 'POST', body: params };
-            } else {
-                fetchOptions = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, email, message }) };
-            }
+        const name = document.getElementById('contactName')?.value.trim() || '';
+        const email = document.getElementById('contactEmail')?.value.trim() || '';
+        const message = document.getElementById('contactMessage')?.value.trim() || '';
+        if (!name || !email || !message) {
+            if (statusEl) { statusEl.textContent = 'Please fill in all fields.'; statusEl.classList.add('error'); }
+            return;
+        }
+        if (!action) {
+            if (statusEl) { statusEl.textContent = 'Form action missing.'; statusEl.classList.add('error'); }
+            return;
+        }
+        if (statusEl) { statusEl.textContent = 'Sending…'; statusEl.classList.remove('error'); }
+        const btn = contactForm.querySelector('button[type="submit"], input[type="submit"]');
+        if (btn) btn.disabled = true;
 
-            fetch(action, fetchOptions).then(async r => {
-                let ok = r.ok;
-                try {
-                    const txt = await r.text();
-                    // Try parse JSON {ok:true}
-                    if (txt) {
-                        try { const j = JSON.parse(txt); if (typeof j.ok !== 'undefined') ok = !!j.ok; } catch(_) {}
-                    }
-                } catch(_) {}
-                if (statusEl) { statusEl.textContent = ok ? 'Sent' : 'Error storing'; statusEl.classList.toggle('error', !ok); }
-            }).catch(err => {
-                if (statusEl) { statusEl.textContent = 'Network error'; statusEl.classList.add('error'); }
-                console.error('Contact submit error', err);
-            }).finally(() => {
-                contactForm.reset();
-                if (btn) btn.disabled = false;
-            });
+        // Prepare payload: for GAS accept form-urlencoded (e.parameter) or JSON fallback
+        let fetchOptions;
+        if (isGAS) {
+            const params = new URLSearchParams();
+            params.append('name', name);
+            params.append('email', email);
+            params.append('message', message);
+            fetchOptions = { method: 'POST', body: params };
+        } else {
+            fetchOptions = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, email, message }) };
+        }
+
+        fetch(action, fetchOptions).then(async r => {
+            let ok = r.ok;
+            try {
+                const txt = await r.text();
+                // Try parse JSON {ok:true}
+                if (txt) {
+                    try { const j = JSON.parse(txt); if (typeof j.ok !== 'undefined') ok = !!j.ok; } catch(_) {}
+                }
+            } catch(_) {}
+            if (statusEl) { statusEl.textContent = ok ? 'Sent' : 'Error storing'; statusEl.classList.toggle('error', !ok); }
+        }).catch(err => {
+            if (statusEl) { statusEl.textContent = 'Network error'; statusEl.classList.add('error'); }
+            console.error('Contact submit error', err);
+        }).finally(() => {
+            contactForm.reset();
+            if (btn) btn.disabled = false;
         });
     }
+    
+    // Initial bind on page load
+    bindContactForm();
     
     // Initialize: try to load partials for all sections, then show current section
     const initialId = getCurrentSection();
