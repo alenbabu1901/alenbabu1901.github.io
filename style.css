@@ -291,47 +291,25 @@ body {
     margin-top: 15px;
 }
 
-/* Skills Grid */
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
+/* Skills - Using Timeline Layout */
+#skills .timeline-item h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 8px;
 }
 
-.skill-card {
-    background: var(--card);
-    padding: 25px 20px;
-    border-radius: 12px;
-    text-align: center;
-    border: 1px solid var(--border);
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.skill-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px var(--shadow);
-    border-color: var(--primary);
-}
-
-.skill-icon {
-    font-size: 2.5rem;
-    display: block;
+#skills .timeline-date {
+    font-size: 0.95rem;
+    color: var(--text);
+    opacity: 0.8;
     margin-bottom: 10px;
 }
 
-.skill-name {
-    font-size: 1.05rem;
-    font-weight: 600;
+#skills .skill-desc {
+    font-size: 1rem;
     color: var(--text);
-}
-
-/* Image replacements for former emoji icons */
-.skill-icon img {
-    width: 2.5rem;
-    height: 2.5rem;
-    display: block;
-    margin: 0 auto 10px auto;
+    line-height: 1.6;
 }
 
 /* Timeline Container (Work, Internships, Education) */
@@ -966,15 +944,6 @@ footer {
         margin-bottom: 20px;
     }
     
-    .skills-grid {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 15px;
-    }
-    
-    .skill-card {
-        padding: 20px 15px;
-    }
-    
     .projects-grid {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -1036,23 +1005,6 @@ footer {
         font-size: 0.85rem;
     }
     
-    .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-    }
-    
-    .skill-card {
-        padding: 15px 10px;
-    }
-    
-    .skill-icon {
-        font-size: 2rem;
-    }
-    
-    .skill-name {
-        font-size: 0.9rem;
-    }
-    
     .profile-img {
         width: 120px;
         height: 120px;
@@ -1102,9 +1054,5 @@ footer {
     .nav-link {
         padding: 5px 8px;
         font-size: 0.8rem;
-    }
-    
-    .skills-grid {
-        grid-template-columns: 1fr;
     }
 }
