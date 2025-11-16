@@ -201,66 +201,59 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Contact Form Handler
+    // Contact Form Handler (Google Apps Script via fetch)
     const contactForm = document.getElementById("contactForm");
     if (contactForm) {
         const statusEl = document.getElementById('contactStatus');
         const action = (contactForm.getAttribute('action') || '').trim();
         const isGAS = action.indexOf('script.google.com/macros/') !== -1;
-
-        // If posting to Google Apps Script via hidden iframe, don't intercept submit
-        if (isGAS) {
-            const iframe = document.getElementById('hidden_iframe');
-            if (iframe) {
-                iframe.addEventListener('load', function () {
-                    if (statusEl) {
-                        statusEl.classList.remove('error');
-                        statusEl.textContent = 'Sent';
-                    }
-                    // Reset after the iframe load completes (submission finished)
-                    contactForm.reset();
-                    const btn = contactForm.querySelector('button[type="submit"]');
-                    if (btn) btn.disabled = false;
-                });
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('contactName')?.value.trim() || '';
+            const email = document.getElementById('contactEmail')?.value.trim() || '';
+            const message = document.getElementById('contactMessage')?.value.trim() || '';
+            if (!name || !email || !message) {
+                if (statusEl) { statusEl.textContent = 'Please fill in all fields.'; statusEl.classList.add('error'); }
+                return;
             }
-            contactForm.addEventListener('submit', function () {
-                const name = document.getElementById('contactName')?.value.trim() || '';
-                const email = document.getElementById('contactEmail')?.value.trim() || '';
-                const message = document.getElementById('contactMessage')?.value.trim() || '';
-                if (!name || !email || !message) {
-                    if (statusEl) { statusEl.textContent = 'Please fill in all fields.'; statusEl.classList.add('error'); }
-                    // Let native validation handle focusing the first invalid field
-                    return;
-                }
-                if (statusEl) { statusEl.textContent = 'Sending…'; statusEl.classList.remove('error'); }
-                const btn = contactForm.querySelector('button[type="submit"]');
-                if (btn) btn.disabled = true;
-                // No preventDefault: native POST submits to hidden iframe
+            if (!action) {
+                if (statusEl) { statusEl.textContent = 'Form action missing.'; statusEl.classList.add('error'); }
+                return;
+            }
+            if (statusEl) { statusEl.textContent = 'Sending…'; statusEl.classList.remove('error'); }
+            const btn = contactForm.querySelector('button[type="submit"]');
+            if (btn) btn.disabled = true;
+
+            // Prepare payload: for GAS accept form-urlencoded (e.parameter) or JSON fallback
+            let fetchOptions;
+            if (isGAS) {
+                const params = new URLSearchParams();
+                params.append('name', name);
+                params.append('email', email);
+                params.append('message', message);
+                fetchOptions = { method: 'POST', body: params };
+            } else {
+                fetchOptions = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, email, message }) };
+            }
+
+            fetch(action, fetchOptions).then(async r => {
+                let ok = r.ok;
+                try {
+                    const txt = await r.text();
+                    // Try parse JSON {ok:true}
+                    if (txt) {
+                        try { const j = JSON.parse(txt); if (typeof j.ok !== 'undefined') ok = !!j.ok; } catch(_) {}
+                    }
+                } catch(_) {}
+                if (statusEl) { statusEl.textContent = ok ? 'Sent' : 'Error storing'; statusEl.classList.toggle('error', !ok); }
+            }).catch(err => {
+                if (statusEl) { statusEl.textContent = 'Network error'; statusEl.classList.add('error'); }
+                console.error('Contact submit error', err);
+            }).finally(() => {
+                contactForm.reset();
+                if (btn) btn.disabled = false;
             });
-        } else {
-            // Default behavior (no GAS): prevent default and attempt fetch to /contact
-            contactForm.addEventListener("submit", function (e) {
-                e.preventDefault();
-                const name = document.getElementById('contactName')?.value.trim() || '';
-                const email = document.getElementById('contactEmail')?.value.trim() || '';
-                const message = document.getElementById('contactMessage')?.value.trim() || '';
-                if (!name || !email || !message) {
-                    if (statusEl) { statusEl.textContent = 'Please fill in all fields.'; statusEl.classList.add('error'); }
-                    return;
-                }
-                fetch('/contact', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, email, message })
-                }).then(r => {
-                    if (statusEl) { statusEl.classList.remove('error'); statusEl.textContent = r.ok ? 'Sent' : 'Error'; }
-                }).catch(() => {
-                    if (statusEl) { statusEl.textContent = 'Error'; statusEl.classList.add('error'); }
-                }).finally(() => {
-                    contactForm.reset();
-                });
-            });
-        }
+        });
     }
     
     // Initialize: try to load partials for all sections, then show current section

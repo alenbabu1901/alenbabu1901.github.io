@@ -31,8 +31,8 @@
   
   <div class="contact-content">
     <p class="contact-intro">Have a question or want to work together? Feel free to reach out!</p>
-    <!-- Replace YOUR_GAS_WEB_APP_URL with your deployed Apps Script Web App URL -->
-    <form id="contactForm" class="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbw1GwnMZQ2RvIELN7-6ItDB7WPYNxrO-4i1YKNxQLwGKxsEAWbU6I3U9cVtGxphy64f/exec" target="hidden_iframe">
+    <!-- Google Apps Script endpoint (replace with your /exec URL if changed) -->
+    <form id="contactForm" class="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbxwkc3XhBrsONXkUE8c5-x9sYlMJTAT1kUufmw9Xz5qHJogAjFGhWJd47jV-bibjNVV/exec">
       <div class="form-group">
         <input id="contactName" name="name" type="text" placeholder="Your Name" required>
       </div>
@@ -44,9 +44,8 @@
       </div>
       <button class="btn" type="submit">Send Message</button>
       <p id="contactStatus" class="contact-status" aria-live="polite"></p>
-      <!-- Submits to Google Apps Script via hidden iframe to avoid page navigation -->
+      <!-- Submission handled via fetch; no iframe required -->
     </form>
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
     
     
   </div>
