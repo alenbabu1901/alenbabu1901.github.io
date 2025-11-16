@@ -895,6 +895,7 @@ footer {
         border-bottom: 1px solid var(--border);
         box-shadow: none;
         order: -1;
+        overflow-y: visible;
     }
     
     .content-side {
