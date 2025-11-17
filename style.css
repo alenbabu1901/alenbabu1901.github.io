@@ -666,7 +666,7 @@ footer {
     z-index: auto;
 }
 
-.btn-back {
+   /* .btn-back {
     background: var(--card);
     border: 2px solid var(--border);
     color: var(--text);
@@ -680,12 +680,12 @@ footer {
     position: relative;
     z-index: 103;
     display: inline-block;
-}
+} */
 
 .project-back-btn {
-    position: fixed;
+    /* position: fixed;
     top: 5px;
-    left: 355px;
+    left: 355px; */
     background: var(--card);
     border: 2px solid var(--primary);
     color: var(--text);
@@ -707,11 +707,11 @@ footer {
     box-shadow: 0 4px 12px var(--shadow);
 }
 
-.btn-back:hover {
+/* .btn-back:hover {
     background: var(--card-hover);
     border-color: var(--primary);
     color: var(--primary);
-}
+} */
 
 .project-detail-image {
     width: 100%;
