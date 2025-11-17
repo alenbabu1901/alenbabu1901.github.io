@@ -144,6 +144,14 @@ document.addEventListener('DOMContentLoaded', function() {
             target.classList.add('active-section');
         }
 
+        // Scroll to top of content area
+        const contentSide = document.querySelector('.content-side');
+        if (contentSide) {
+            contentSide.scrollTop = 0;
+        }
+        // Also scroll window to top for mobile
+        window.scrollTo(0, 0);
+
         // Update active nav link
         navLinks.forEach(link => {
             link.classList.remove('active');
