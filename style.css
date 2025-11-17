@@ -802,42 +802,6 @@ footer {
     box-shadow: 0 8px 20px rgba(188, 24, 136, 0.4);
 }
 
-.instagram-btn2 {
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-}
-
-.instagram-btn2:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(188, 24, 136, 0.4);
-}
-
-.instagram-btn3 {
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-}
-
-.instagram-btn3:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(188, 24, 136, 0.4);
-}
-
-.instagram-btn4 {
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-}
-
-.instagram-btn4:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(188, 24, 136, 0.4);
-}
-
-.instagram-btn1 {
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-}
-
-.instagram-btn1:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(188, 24, 136, 0.4);
-}
-
 .twitter-btn {
     background: #000000;
 }
@@ -845,6 +809,51 @@ footer {
 .twitter-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.linkedin-btn {
+    background: #0A66C2;
+}
+
+.linkedin-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(10, 102, 194, 0.4);
+}
+
+.github-btn {
+    background: #181717;
+}
+
+.github-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(24, 23, 23, 0.4);
+}
+
+.email-btn {
+    background: #EA4335;
+}
+
+.email-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(234, 67, 53, 0.4);
+}
+
+.whatsapp-btn {
+    background: #25D366;
+}
+
+.whatsapp-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+}
+
+.stackoverflow-btn {
+    background: #26A5E4;
+}
+
+.stackoverflow-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(38, 165, 228, 0.4);
 }
 
 /* Responsive Design */
