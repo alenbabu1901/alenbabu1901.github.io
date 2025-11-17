@@ -684,7 +684,7 @@ footer {
 
 .project-back-btn {
     position: fixed;
-    top: 15px;
+    top: 5px;
     left: 355px;
     background: var(--card);
     border: 2px solid var(--primary);
