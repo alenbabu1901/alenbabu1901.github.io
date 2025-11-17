@@ -656,6 +656,15 @@ footer {
 /* Project Detail Styles */
 .project-detail-header {
     margin-bottom: 30px;
+    position: relative;
+    z-index: 102;
+}
+
+.project-detail-header .section-title {
+    position: static;
+    margin-top: 0;
+    padding-top: 0;
+    z-index: auto;
 }
 
 .btn-back {
@@ -669,6 +678,9 @@ footer {
     font-weight: 600;
     transition: all 0.3s ease;
     margin-bottom: 20px;
+    position: relative;
+    z-index: 103;
+    display: inline-block;
 }
 
 .btn-back:hover {
