@@ -1,5 +1,7 @@
 <section id="project-detail" class="section active-section">
+  
   <button class="project-back-btn" onclick="history.back()">Back to Projects</button>
+  
   <div class="project-detail-header">
     <h2 class="section-title">AI Assistant</h2>
   </div>
@@ -9,7 +11,7 @@
     
     <div class="project-detail-info">
       <div class="project-meta">
-        <span class="meta-label">Duration:</span> 2 months
+        <span class="meta-label">Duration:</span> 6 months
       </div>
       <div class="project-meta">
         <span class="meta-label">Role:</span> Lead Developer
@@ -22,21 +24,22 @@
     <div class="project-section">
       <h3>Overview</h3>
       <p>
-        A comprehensive AI-powered personal assistant designed for PC users. This project integrates 
-        multiple cutting-edge technologies including natural language processing, voice recognition, 
-        and intelligent automation to create a seamless user experience.
+        A fully modular, offline-first AI-powered personal assistant built for Windows. Designed to process both voice and text commands, the system performs real-time automation, system control, and intelligent task handling. The project supports wake-word detection, multi-intent processing, plugin-based extensions, and an integrated GUI for seamless interaction.
       </p>
     </div>
 
     <div class="project-section">
       <h3>Key Features</h3>
       <ul class="feature-list">
-        <li><strong>Voice Commands:</strong> Natural language processing for intuitive voice control</li>
-        <li><strong>Task Automation:</strong> Automated workflows for common tasks and file management</li>
-        <li><strong>Smart Reminders:</strong> Context-aware notification system</li>
-        <li><strong>GUI Interface:</strong> Clean and modern graphical user interface</li>
-        <li><strong>API Integration:</strong> Connects with weather, news, and calendar APIs</li>
-        <li><strong>Learning Capability:</strong> Adapts to user preferences over time</li>
+        <li><strong>Wake-Word Activation:</strong> Always-on listener responds to “Hey Assistant” instantly</li>
+        <li><strong>Voice & Text Input:</strong> Dual I/O pipeline with Google Speech API fallback for high accuracy</li>
+        <li><strong>Task Automation:</strong> Opens apps, performs calculations, controls volume, manages files</li>
+        <li><strong>Smart Notes & Reminders:</strong> Stores notes, reminders, and command history locally</li>
+        <li><strong>Weather & API Integrations:</strong> Real-time weather, dictionary, and knowledge lookups</li>
+        <li><strong>Human-like Interaction:</strong> Rule-based NLP for natural, conversational responses</li>
+        <li><strong>GUI Interface:</strong> Custom Tkinter interface with dark mode, animations, and status indicators</li>
+        <li><strong>Plugin Architecture:</strong> Add or remove features without modifying core logic</li>
+        <li><strong>Offline First:</strong> Uses Vosk STT + pyttsx3 TTS locally; online only when necessary</li>
       </ul>
     </div>
 
@@ -45,37 +48,58 @@
       <div class="project-tags">
         <span class="tag">Python 3.11</span>
         <span class="tag">TensorFlow</span>
-        <span class="tag">spaCy NLP</span>
-        <span class="tag">SpeechRecognition</span>
-        <span class="tag">PyQt5</span>
-        <span class="tag">SQLite</span>
+        <span class="tag">Tkinter (Custom GUI)</span>
+        <span class="tag">Vosk Offline Speech Recognition</span>
+        <span class="tag">Google SpeechRecognition API (Fallback for high accuracy)</span>
+        <span class="tag">pyttsx3 Offline Text-to-Speech</span>
+        <span class="tag">Custom NLP Engine (Intent Parser + Dispatcher)</span>
+        <span class="tag">JSON-based Local Storage (notes, reminders, history)</span>
       </div>
     </div>
 
     <div class="project-section">
+      <h3>Additional Libraries</h3>
+      <div class="project-tags">
+        <span class="tag">PyAudio / sounddevice</span>
+        <span class="tag">Requests (API integration)</span>
+        <span class="tag">psutil (system monitoring)</span>
+        <span class="tag">subprocess (automation)</span>
+        <span class="tag">ctypes / pycaw (system volume control)</span>
+      </div>
+    </div>
+
+    <div class="project-section">
+      <h3>Architecture Highlights</h3>
+      <div class="project-tags">
+        <p>Modular Folder Structure separating core logic, UI, plugins, tasks, utilities, and data</p>
+        <p>Event-driven workflow: wake-word → listen → parse intent → execute → respond</p>
+        <p>Extensible plugin system for new commands (music control, calendar, browser automation, etc.)</p>
+        <p>Offline priority ensures privacy and fast response time</p>
+      </div>
+    </div>
+    
+    <div class="project-section">
       <h3>Challenges & Solutions</h3>
       <p>
-        <strong>Challenge:</strong> Achieving high accuracy in voice recognition across different accents and environments.
+        <strong>Challenge:</strong> Ensuring fast, accurate speech recognition in an offline-first system.
       </p>
       <p>
-        <strong>Solution:</strong> Implemented a hybrid approach combining Google Speech API with custom-trained 
-        models, achieving 95% accuracy in controlled environments.
+        <strong>Solution:</strong> Implemented a dual-mode STT engine: Primary: Google Speech API for accuracy & speed <br>Secondary: Vosk offline model as a fallback Added noise filtering + wake-word activation to increase reliability <br>Result: Significantly improved response rate and accuracy, even with background noise.
       </p>
     </div>
 
     <div class="project-section">
       <h3>Results & Impact</h3>
       <ul class="feature-list">
-        <li>Reduced daily task completion time by 40%</li>
-        <li>Successfully demonstrated at college tech fest</li>
-        <li>Received positive feedback from 200+ beta testers</li>
-        <li>Open-sourced on GitHub with 150+ stars</li>
+        <li>50% faster task execution compared to manual desktop operations</li>
+        <li>Processes commands in under 0.5 seconds with Google mode</li>
+        <li>Fully open-source, modular, and ready for future extensions like GPT-based reasoning</li>
       </ul>
     </div>
 
     <div class="project-links">
-      <a href="#" class="btn">View on GitHub</a>
-      <a href="#" class="btn">Live Demo</a>
+      <a href="https://github.com/alenbabu1901/Simple-AI-Assistant" target="_blank" rel="noopener noreferrer" class="btn">View on GitHub</a>
+      <!-- <a href="#" class="btn">Live Demo</a> -->
     </div>
   </div>
 </section>

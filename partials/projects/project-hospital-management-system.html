@@ -1,15 +1,18 @@
 <section id="project-detail" class="section active-section">
+  
   <button class="project-back-btn" onclick="history.back()">Back to Projects</button>
+  
   <div class="project-detail-header">
     <h2 class="section-title">Hospital Management System</h2>
   </div>
   
   <div class="project-detail-content">
+    
     <img src="assets/hospital.jpg" alt="Hospital Management System" class="project-detail-image">
     
     <div class="project-detail-info">
       <div class="project-meta">
-        <span class="meta-label">Duration:</span> 6 months
+        <span class="meta-label">Duration:</span> 2 months
       </div>
       <div class="project-meta">
         <span class="meta-label">Role:</span> Lead Developer
@@ -22,60 +25,73 @@
     <div class="project-section">
       <h3>Overview</h3>
       <p>
-        A comprehensive AI-powered personal assistant designed for PC users. This project integrates 
-        multiple cutting-edge technologies including natural language processing, voice recognition, 
-        and intelligent automation to create a seamless user experience.
+        The Hospital Management System is a role-based web application designed to streamline medical appointment workflows between patients and doctors. The platform supports secure login for both user types, appointment scheduling, and real-time confirmation. It maintains structured medical records, automates scheduling logic, and reduces manual administrative effort.
       </p>
     </div>
 
     <div class="project-section">
       <h3>Key Features</h3>
       <ul class="feature-list">
-        <li><strong>Voice Commands:</strong> Natural language processing for intuitive voice control</li>
-        <li><strong>Task Automation:</strong> Automated workflows for common tasks and file management</li>
-        <li><strong>Smart Reminders:</strong> Context-aware notification system</li>
-        <li><strong>GUI Interface:</strong> Clean and modern graphical user interface</li>
-        <li><strong>API Integration:</strong> Connects with weather, news, and calendar APIs</li>
-        <li><strong>Learning Capability:</strong> Adapts to user preferences over time</li>
+        <li><strong>Doctor Module:</strong> Manage availability and schedules, View incoming appointment requests, Approve / reject patient bookings, Access patient records and visit history</li>
+        <li><strong>Patient Module:</strong> Register and log in securely, Search doctors by specialization, Book, cancel, or reschedule appointments, View appointment history and status updates</li>
+        <li><strong>System Features:</strong> Multi-role authentication and authorization, Real-time notification of booking status, Structured database for doctors, patients, and appointments, User-friendly and responsive UI</li>
       </ul>
     </div>
 
     <div class="project-section">
       <h3>Technologies Used</h3>
       <div class="project-tags">
-        <span class="tag">Python 3.11</span>
-        <span class="tag">TensorFlow</span>
-        <span class="tag">spaCy NLP</span>
-        <span class="tag">SpeechRecognition</span>
-        <span class="tag">PyQt5</span>
-        <span class="tag">SQLite</span>
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Java</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">Apache</span>
+      </div>
+    </div>
+
+    <div class="project-section">
+      <h3>Additional Libraries</h3>
+      <div class="project-tags">
+        <span class="tag">JDBC</span>
+      </div>
+    </div>
+
+    <div class="project-section">
+      <h3>Architecture Highlights</h3>
+      <div class="project-tags">
+        <p>Role-based access implemented with separate login dashboards</p>
+        <p>Modular MVC-style structure separating UI, business logic, and persistence</p>
+        <p>MySQL relational schema storing:Doctors and specializations, Patient profiles, Appointment metadata (time, date, status)</p>
+        <p>Secure session handling for both doctor and patient logins</p>
+        <p>Validation layer to prevent overlapping appointment bookings</p>
       </div>
     </div>
 
     <div class="project-section">
       <h3>Challenges & Solutions</h3>
       <p>
-        <strong>Challenge:</strong> Achieving high accuracy in voice recognition across different accents and environments.
+        <strong>Challenge:</strong> Avoiding overlapping or double-booked appointment times.<br>Role-based separate access flows.<br>Maintaining secure user authentication.<br>Keeping the interface easy for non-technical users.
       </p>
       <p>
-        <strong>Solution:</strong> Implemented a hybrid approach combining Google Speech API with custom-trained 
-        models, achieving 95% accuracy in controlled environments.
+        <strong>Solution:</strong> Implemented availability checks and appointment conflict logic.<br>Designed two dashboards with controlled feature access.<br>Used hashed passwords and session-based login protection.<br>Created clean, responsive UI with intuitive navigation.
       </p>
     </div>
 
     <div class="project-section">
       <h3>Results & Impact</h3>
       <ul class="feature-list">
-        <li>Reduced daily task completion time by 40%</li>
-        <li>Successfully demonstrated at college tech fest</li>
-        <li>Received positive feedback from 200+ beta testers</li>
-        <li>Open-sourced on GitHub with 150+ stars</li>
+        <li>Reduced appointment processing time by replacing manual systems</li>
+        <li>Improved scheduling efficiency and availability visibility</li>
+        <li>Centralized patient and doctor information in a structured database</li>
+        <li>Demonstrated full-stack development skills with authentication, CRUD functionality, database design, and UI workflow implementation</li>
+        <li>OpSuitable for deployment in clinics, academic training, or small-scale hospital use</li>
       </ul>
     </div>
 
-    <div class="project-links">
-      <a href="#" class="btn">View on GitHub</a>
+    <!-- <div class="project-links">
+      <a href="https://github.com/alenbabu1901/demo-project" target="_blank" rel="noopener noreferrer" class="btn">View on GitHub</a>
       <a href="#" class="btn">Live Demo</a>
-    </div>
+    </div> -->
   </div>
 </section>

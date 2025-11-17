@@ -1,10 +1,13 @@
 <section id="project-detail" class="section active-section">
+  
   <button class="project-back-btn" onclick="history.back()">Back to Projects</button>
+  
   <div class="project-detail-header">
     <h2 class="section-title">College Admission Suggestion System</h2>
   </div>
   
   <div class="project-detail-content">
+    
     <img src="assets/collegeadmission.jpg" alt="College Admission Suggestion System" class="project-detail-image">
     
     <div class="project-detail-info">
@@ -22,21 +25,19 @@
     <div class="project-section">
       <h3>Overview</h3>
       <p>
-        A comprehensive AI-powered personal assistant designed for PC users. This project integrates 
-        multiple cutting-edge technologies including natural language processing, voice recognition, 
-        and intelligent automation to create a seamless user experience.
+        The College Admission Suggestion System is an ML-powered recommendation platform built for KEAM aspirants in Kerala. It predicts the most suitable colleges based on rank, course preferences, and geographic criteria. The system automates model selection, ensuring high prediction accuracy and offers dual interfaces: a student-facing web app and an admin desktop tool for dataset management and model training.
       </p>
     </div>
 
     <div class="project-section">
       <h3>Key Features</h3>
       <ul class="feature-list">
-        <li><strong>Voice Commands:</strong> Natural language processing for intuitive voice control</li>
-        <li><strong>Task Automation:</strong> Automated workflows for common tasks and file management</li>
-        <li><strong>Smart Reminders:</strong> Context-aware notification system</li>
-        <li><strong>GUI Interface:</strong> Clean and modern graphical user interface</li>
-        <li><strong>API Integration:</strong> Connects with weather, news, and calendar APIs</li>
-        <li><strong>Learning Capability:</strong> Adapts to user preferences over time</li>
+        <li><strong>Machine learning–based personalized college suggestions</strong></li>
+        <li><strong>Automatic best-model selection from multiple algorithms</strong></li>
+        <li><strong>Student-friendly responsive web interface built with Flask</strong></li>
+        <li><strong>Admin panel for database updates and ML model training</strong></li>
+        <li><strong>Real-time predictions in under 2 seconds</strong></li>
+        <li><strong>Support for multiple years of KEAM admission data (2017–present)</strong></li>
       </ul>
     </div>
 
@@ -45,37 +46,64 @@
       <div class="project-tags">
         <span class="tag">Python 3.11</span>
         <span class="tag">TensorFlow</span>
-        <span class="tag">spaCy NLP</span>
-        <span class="tag">SpeechRecognition</span>
-        <span class="tag">PyQt5</span>
+        <span class="tag">Flask</span>
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
         <span class="tag">SQLite</span>
+        <span class="tag">Linear Regression</span>
+        <span class="tag">Polynomial Regression</span>
+        <span class="tag">Random Forest</span>
+        <span class="tag">Support Vector Regression (SVR)</span>
+        <span class="tag">Neural Networks</span>
+      </div>
+    </div>
+
+    <div class="project-section">
+      <h3>Additional Libraries</h3>
+      <div class="project-tags">
+        <span class="tag">NumPy</span>
+        <span class="tag">Pandas</span>
+        <span class="tag">Scikit-learn</span>
+        <span class="tag">Matplotlib (for admin visualization)</span>
+        <span class="tag">Tkinter (admin GUI)</span>
+        <span class="tag">Joblib (model persistence)</span>
+      </div>
+    </div>
+
+    <div class="project-section">
+      <h3>Architecture Highlights</h3>
+      <div class="project-tags">
+        <p>Dual Interface System:Web interface for students and Desktop GUI for admins</p>
+        <p>Automatic ML Pipeline:Trains and evaluates models and Selects best based on accuracy and error metrics</p>
+        <p>Modular Code Structure: Separate modules for ML models, database operations, UI, and routing</p>
+        <p>Portable System: Runs locally without external dependencies</p>
       </div>
     </div>
 
     <div class="project-section">
       <h3>Challenges & Solutions</h3>
       <p>
-        <strong>Challenge:</strong> Achieving high accuracy in voice recognition across different accents and environments.
+        <strong>Challenge:</strong> Ensuring accurate predictions across diverse ranks and courses. <br>Handling multi-year KEAM admission variations. <br>Providing both administrative controls and student usage.<br>Maintaining performance and fast response.
       </p>
       <p>
-        <strong>Solution:</strong> Implemented a hybrid approach combining Google Speech API with custom-trained 
-        models, achieving 95% accuracy in controlled environments.
+        <strong>Solution:</strong> Implemented model comparison and dynamic algorithm selection.<br>Used normalized datasets and preprocessing pipelines.<br>Developed separate interfaces: Tkinter for admin, Flask web app for users.<br>Optimized model loading using Joblib and indexed SQLite queries.
       </p>
     </div>
 
     <div class="project-section">
       <h3>Results & Impact</h3>
       <ul class="feature-list">
-        <li>Reduced daily task completion time by 40%</li>
-        <li>Successfully demonstrated at college tech fest</li>
-        <li>Received positive feedback from 200+ beta testers</li>
-        <li>Open-sourced on GitHub with 150+ stars</li>
+        <li>Improved prediction accuracy due to model selection automation</li>
+        <li>Instant suggestions make the system usable for real-time decision support</li>
+        <li>Helps KEAM aspirants narrow down colleges based on real data, reducing uncertainty</li>
+        <li>Scalable and ready for deployment on cloud platforms</li>
+        <li>Demonstrates full-stack development, ML integration, and UX-friendly design</li> 
       </ul>
     </div>
 
     <div class="project-links">
-      <a href="#" class="btn">View on GitHub</a>
-      <a href="#" class="btn">Live Demo</a>
+      <a href="https://github.com/alenbabu1901/College-Admission-Suggestion" target="_blank" rel="noopener noreferrer" class="btn">View on GitHub</a>
+      <!-- <a href="#" class="btn">Live Demo</a> -->
     </div>
   </div>
 </section>

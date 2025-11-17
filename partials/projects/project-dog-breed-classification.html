@@ -1,10 +1,13 @@
 <section id="project-detail" class="section active-section">
+  
   <button class="project-back-btn" onclick="history.back()">Back to Projects</button>
+  
   <div class="project-detail-header">
     <h2 class="section-title">Dog Breed Classification and Recommendation</h2>
   </div>
   
   <div class="project-detail-content">
+    
     <img src="assets/dog.jpg" alt="Dog Breed Classification and Recommendation" class="project-detail-image">
     
     <div class="project-detail-info">
@@ -22,60 +25,80 @@
     <div class="project-section">
       <h3>Overview</h3>
       <p>
-        A comprehensive AI-powered personal assistant designed for PC users. This project integrates 
-        multiple cutting-edge technologies including natural language processing, voice recognition, 
-        and intelligent automation to create a seamless user experience.
+        The Dog Breed Classification and Recommendation System is an AI-powered platform that helps users identify dog breeds from images and receive personalized breed recommendations based on lifestyle and preference factors. The system combines deep learning–based image classification with a content-based recommendation engine and provides a responsive, user-friendly web interface.
       </p>
     </div>
 
     <div class="project-section">
       <h3>Key Features</h3>
       <ul class="feature-list">
-        <li><strong>Voice Commands:</strong> Natural language processing for intuitive voice control</li>
-        <li><strong>Task Automation:</strong> Automated workflows for common tasks and file management</li>
-        <li><strong>Smart Reminders:</strong> Context-aware notification system</li>
-        <li><strong>GUI Interface:</strong> Clean and modern graphical user interface</li>
-        <li><strong>API Integration:</strong> Connects with weather, news, and calendar APIs</li>
-        <li><strong>Learning Capability:</strong> Adapts to user preferences over time</li>
+        <li><strong>Image Classification using ResNet50V2 with transfer learning</strong> </li>
+        <li><strong>Real-time prediction for 120+ breeds with high accuracy</strong> </li>
+        <li><strong>Recommendation engine based on cosine similarity for personality and lifestyle matching</strong> </li>
+        <li><strong>Flask web app with authentication, dashboard, and saved matches</strong> </li>
+        <li><strong>Support for multiple image formats and secure file uploads</strong> </li>
       </ul>
     </div>
 
     <div class="project-section">
       <h3>Technologies Used</h3>
       <div class="project-tags">
-        <span class="tag">Python 3.11</span>
-        <span class="tag">TensorFlow</span>
-        <span class="tag">spaCy NLP</span>
-        <span class="tag">SpeechRecognition</span>
-        <span class="tag">PyQt5</span>
-        <span class="tag">SQLite</span>
+          <span class="tag">TensorFlow</span>
+          <span class="tag">Keras</span>
+          <span class="tag">ResNet50V2</span>
+          <span class="tag">Cosine similarity</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">Python</span>
+          <span class="tag">Flask</span>
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+          <span class="tag">SQLite</span>
+      </div>
+    </div>
+    
+    <div class="project-section">
+      <h3>Additional Libraries</h3>
+      <div class="project-tags">
+        <span class="tag">OpenCV</span>
+        <span class="tag">Scikit-learn</span>
+        <span class="tag">Pillow</span>
+      </div>
+    </div>
+
+    <div class="project-section">
+      <h3>Architecture Highlights</h3>
+      <div class="project-tags">
+        <p>Modular system architecture separating ML pipeline, recommendation logic, and web application</p>
+        <p>Saved TensorFlow model for fast inference without retraining</p>
+        <p>SQLite-backed profile storage for dog characteristics and user preferences</p>
+        <p>Flask API layer handles image classification, recommendation flow, and user session management</p>
       </div>
     </div>
 
     <div class="project-section">
       <h3>Challenges & Solutions</h3>
       <p>
-        <strong>Challenge:</strong> Achieving high accuracy in voice recognition across different accents and environments.
+        <strong>Challenge:</strong> High variation in image quality and resolution.<br>Improving accuracy across 120+ fine-grained breeds.<br>Mapping user preferences to breed traits.<br>Providing seamless user experience.
       </p>
       <p>
-        <strong>Solution:</strong> Implemented a hybrid approach combining Google Speech API with custom-trained 
-        models, achieving 95% accuracy in controlled environments.
+        <strong>Solution:</strong> Applied data augmentation, normalization, and preprocessing pipeline.<br>Used transfer learning with ResNet50V2 and tuned epochs, dropout, and optimizers.<br>Implemented cosine similarity with multi-dimensional scoring and weight tuning.<br>Built a responsive interface with clear workflows and secure upload handling.
       </p>
     </div>
 
     <div class="project-section">
       <h3>Results & Impact</h3>
       <ul class="feature-list">
-        <li>Reduced daily task completion time by 40%</li>
-        <li>Successfully demonstrated at college tech fest</li>
-        <li>Received positive feedback from 200+ beta testers</li>
-        <li>Open-sourced on GitHub with 150+ stars</li>
+        <li>Achieved high classification accuracy across 120+ breeds</li>
+        <li>Delivered meaningful and personalized breed suggestions based on lifestyle inputs</li>
+        <li>Built a complete end-to-end ML product: training → model deployment → user-facing interface</li>
+        <li>Demonstrates CNN deep learning, recommendation system design, full-stack development, and user experience thinking</li>
       </ul>
     </div>
 
     <div class="project-links">
-      <a href="#" class="btn">View on GitHub</a>
-      <a href="#" class="btn">Live Demo</a>
+      <a href="https://github.com/alenbabu1901/Dog-breed-classification-and-recommendation-system" target="_blank" rel="noopener noreferrer" class="btn">View on GitHub</a>
+      <!-- <a href="#" class="btn">Live Demo</a> -->
     </div>
   </div>
 </section>
