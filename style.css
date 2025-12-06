@@ -17,22 +17,6 @@ body {
 }
 
 :root {
-    --bg: #F9FAFB;
-    --text: #1A1A1A;
-    --primary: #4A56FF; 
-    --primary-dark: #22C76B;
-    --card: #FFFFFF;
-    --card-hover: #F1F4F8;
-    --nav-bg: #FFFFFF;
-    --border: #D1D5DB;
-    --shadow: rgba(0, 0, 0, 0.12);
-    --accent: #22C76B;
-    --success: #16A34A;
-    --error: #E11D48;
-    --text-secondary: #6B7280;
-} 
-
-.dark {
     --bg: #0f0f0f;
     --text: #EDEDED;
     --primary: #6b6dff;
@@ -46,6 +30,24 @@ body {
     --success: #2EEA7F;
     --error: #FF4A4A;
     --text-secondary: #9E9E9E;
+} 
+
+
+
+.dark {
+    --bg: #F9FAFB;
+    --text: #1A1A1A;
+    --primary: #4A56FF; 
+    --primary-dark: #22C76B;
+    --card: #FFFFFF;
+    --card-hover: #F1F4F8;
+    --nav-bg: #FFFFFF;
+    --border: #D1D5DB;
+    --shadow: rgba(0, 0, 0, 0.12);
+    --accent: #22C76B;
+    --success: #16A34A;
+    --error: #E11D48;
+    --text-secondary: #6B7280;
 }
 
 
