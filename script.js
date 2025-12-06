@@ -37,34 +37,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     })();
     
-    // Apply theme: saved preference > system preference
+    // Apply theme: saved preference (default is dark theme from :root)
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        // Use saved preference
-        if (savedTheme === 'dark') {
-            document.body.classList.add('dark');
-        }
-    } 
-    // Commented out system preference - default is dark theme from :root
-    // else {
-    //     // Use system preference
-    //     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    //     if (prefersDark) {
-    //         document.body.classList.add('dark');
-    //     }
-    // }
-    
-    // Commented out system theme change listener
-    // Listen for system theme changes if no saved preference
-    // window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    //     if (!localStorage.getItem('theme')) {
-    //         if (e.matches) {
-    //             document.body.classList.add('dark');
-    //         } else {
-    //             document.body.classList.remove('dark');
-    //         }
-    //     }
-    // });
+    if (savedTheme === 'light') {
+        // Apply light theme if previously saved
+        document.body.classList.add('dark');
+    }
+    // Default is dark theme (:root) - no condition needed
     
     // Single-section mode: show only the selected section
     const sections = document.querySelectorAll('.section');
