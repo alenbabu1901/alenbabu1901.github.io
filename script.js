@@ -1,8 +1,4 @@
-// Theme Toggle
-function toggleTheme() {
-    document.body.classList.toggle("dark");
-    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-}
+
 
 function getCurrentSection() {
     // Get section from path (e.g., /home -> home) or hash (e.g., #home -> home)
@@ -23,7 +19,7 @@ function getCurrentSection() {
     return 'home';
 }
 
-// Load saved theme and initialize on DOM ready
+// Always apply dark theme and initialize on DOM ready
 document.addEventListener('DOMContentLoaded', function() {
     // Handle GitHub Pages SPA redirect
     (function() {
@@ -36,15 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     })();
-    
-    // Apply theme: saved preference (default is dark theme from :root)
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-        // Apply light theme if previously saved
-        document.body.classList.add('dark');
-    }
-    // Default is dark theme (:root) - no condition needed
-    
+    // Always use dark theme
+    document.body.classList.add('dark');
     // Single-section mode: show only the selected section
     const sections = document.querySelectorAll('.section');
     const navLinks = document.querySelectorAll('.nav-link');
